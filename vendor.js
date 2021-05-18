@@ -1,5 +1,21 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["vendor"],{
 
+/***/ "../node_modules/isarray/index.js":
+/*!****************************************!*\
+  !*** ../node_modules/isarray/index.js ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+var toString = {}.toString;
+
+module.exports = Array.isArray || function (arr) {
+  return toString.call(arr) == '[object Array]';
+};
+
+
+/***/ }),
+
 /***/ "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/common.js":
 /*!**********************************************************************!*\
   !*** ./node_modules/@angular/common/__ivy_ngcc__/fesm2015/common.js ***!
@@ -52874,22 +52890,6 @@ QRCodeModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjec
 
 /***/ }),
 
-/***/ "./node_modules/angularx-qrcode/node_modules/isarray/index.js":
-/*!********************************************************************!*\
-  !*** ./node_modules/angularx-qrcode/node_modules/isarray/index.js ***!
-  \********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-var toString = {}.toString;
-
-module.exports = Array.isArray || function (arr) {
-  return toString.call(arr) == '[object Array]';
-};
-
-
-/***/ }),
-
 /***/ "./node_modules/angularx-qrcode/node_modules/qrcode/lib/browser.js":
 /*!*************************************************************************!*\
   !*** ./node_modules/angularx-qrcode/node_modules/qrcode/lib/browser.js ***!
@@ -54333,7 +54333,7 @@ var Version = __webpack_require__(/*! ./version */ "./node_modules/angularx-qrco
 var FormatInfo = __webpack_require__(/*! ./format-info */ "./node_modules/angularx-qrcode/node_modules/qrcode/lib/core/format-info.js")
 var Mode = __webpack_require__(/*! ./mode */ "./node_modules/angularx-qrcode/node_modules/qrcode/lib/core/mode.js")
 var Segments = __webpack_require__(/*! ./segments */ "./node_modules/angularx-qrcode/node_modules/qrcode/lib/core/segments.js")
-var isArray = __webpack_require__(/*! isarray */ "./node_modules/angularx-qrcode/node_modules/isarray/index.js")
+var isArray = __webpack_require__(/*! isarray */ "../node_modules/isarray/index.js")
 
 /**
  * QRCode for JavaScript
@@ -55381,7 +55381,7 @@ var ECCode = __webpack_require__(/*! ./error-correction-code */ "./node_modules/
 var ECLevel = __webpack_require__(/*! ./error-correction-level */ "./node_modules/angularx-qrcode/node_modules/qrcode/lib/core/error-correction-level.js")
 var Mode = __webpack_require__(/*! ./mode */ "./node_modules/angularx-qrcode/node_modules/qrcode/lib/core/mode.js")
 var VersionCheck = __webpack_require__(/*! ./version-check */ "./node_modules/angularx-qrcode/node_modules/qrcode/lib/core/version-check.js")
-var isArray = __webpack_require__(/*! isarray */ "./node_modules/angularx-qrcode/node_modules/isarray/index.js")
+var isArray = __webpack_require__(/*! isarray */ "../node_modules/isarray/index.js")
 
 // Generator polynomial used to encode version information
 var G18 = (1 << 12) | (1 << 11) | (1 << 10) | (1 << 9) | (1 << 8) | (1 << 5) | (1 << 2) | (1 << 0)
@@ -55835,7 +55835,7 @@ exports.qrToImageData = function qrToImageData (imgData, qr, opts) {
 
 
 
-var isArray = __webpack_require__(/*! isarray */ "./node_modules/angularx-qrcode/node_modules/isarray/index.js")
+var isArray = __webpack_require__(/*! isarray */ "../node_modules/isarray/index.js")
 
 function typedArraySupport () {
   // Can typed array instances be augmented?
