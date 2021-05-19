@@ -52563,9 +52563,8 @@ __webpack_require__.r(__webpack_exports__);
 
 const _c0 = ["qrcElement"];
 class QRCodeComponent {
-    constructor(renderer, platformId) {
+    constructor(renderer) {
         this.renderer = renderer;
-        this.platformId = platformId;
         // Deprecated
         this.colordark = '';
         this.colorlight = '';
@@ -52585,8 +52584,7 @@ class QRCodeComponent {
         this.margin = 4;
         this.scale = 4;
         this.width = 10;
-        this.qrcode = null;
-        // Deprectation warnings
+        // Deprecation warnings
         if (this.colordark !== '') {
             console.warn('[angularx-qrcode] colordark is deprecated, use colorDark.');
         }
@@ -52603,18 +52601,9 @@ class QRCodeComponent {
             console.warn('[angularx-qrcode] size is deprecated, use `width`. Defaults to 10.');
         }
         if (this.usesvg !== false) {
-            console.warn(`[angularx-qrcode] usesvg is deprecated, use [elementType]="'img'".`);
+            console.warn(`[angularx-qrcode] usesvg is deprecated, use [elementType]="'svg'".`);
         }
     }
-    // public ngAfterViewInit() {
-    //   if (isPlatformServer(this.platformId)) {
-    //     return;
-    //   }
-    //   // if (!QRCode) {
-    //   //   QRCode = require('qrcode');
-    //   // }
-    //   this.createQRCode();
-    // }
     ngOnChanges() {
         this.createQRCode();
     }
@@ -52711,12 +52700,12 @@ class QRCodeComponent {
             this.version = 1;
         }
         else if (this.version !== undefined && isNaN(this.version)) {
-            console.warn('[angularx-qrcode] version should be a number, defaulting to auto');
+            console.warn('[angularx-qrcode] version should be a number, defaulting to auto.');
             this.version = undefined;
         }
         try {
             if (!this.isValidQrCodeText(this.qrdata)) {
-                throw new Error('[angularx-qrcode] Field `qrdata` is empty');
+                throw new Error('[angularx-qrcode] Field `qrdata` is empty, set`allowEmptyString="true"` to overwrite this behaviour.');
             }
             let element;
             switch (this.elementType) {
@@ -52731,13 +52720,12 @@ class QRCodeComponent {
                     });
                     break;
                 case 'svg':
-                    element = this.renderer.createElement('svg', 'svg');
+                    element = this.renderer.createElement('div');
                     this.toSVG()
                         .then((svgString) => {
-                        element.innerHTML = svgString;
-                        this.renderer.setAttribute(element, 'height', `${this.width}`);
-                        this.renderer.setAttribute(element, 'width', `${this.width}`);
-                        this.renderElement(element);
+                        this.renderer.setProperty(element, 'innerHTML', svgString);
+                        const innerElement = element.firstChild;
+                        this.renderElement(innerElement);
                     })
                         .catch((e) => {
                         console.error('[angularx-qrcode] svg error: ', e);
@@ -52762,7 +52750,7 @@ class QRCodeComponent {
         }
     }
 }
-QRCodeComponent.ɵfac = function QRCodeComponent_Factory(t) { return new (t || QRCodeComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["Renderer2"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["PLATFORM_ID"])); };
+QRCodeComponent.ɵfac = function QRCodeComponent_Factory(t) { return new (t || QRCodeComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["Renderer2"])); };
 QRCodeComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: QRCodeComponent, selectors: [["qrcode"]], viewQuery: function QRCodeComponent_Query(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵstaticViewQuery"](_c0, true);
     } if (rf & 2) {
@@ -52774,8 +52762,7 @@ QRCodeComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineCo
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵclassMap"](ctx.cssClass);
     } }, encapsulation: 2, changeDetection: 0 });
 QRCodeComponent.ctorParameters = () => [
-    { type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Renderer2"] },
-    { type: undefined, decorators: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"], args: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["PLATFORM_ID"],] }] }
+    { type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Renderer2"] }
 ];
 QRCodeComponent.propDecorators = {
     colordark: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"] }],
@@ -52804,10 +52791,7 @@ QRCodeComponent.propDecorators = {
                 changeDetection: _angular_core__WEBPACK_IMPORTED_MODULE_0__["ChangeDetectionStrategy"].OnPush,
                 template: `<div #qrcElement [class]="cssClass"></div>`
             }]
-    }], function () { return [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Renderer2"] }, { type: undefined, decorators: [{
-                type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Inject"],
-                args: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["PLATFORM_ID"]]
-            }] }]; }, { colordark: [{
+    }], function () { return [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Renderer2"] }]; }, { colordark: [{
             type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"]
         }], colorlight: [{
             type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"]
